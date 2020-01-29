@@ -1,3 +1,100 @@
+/*PORTADA*/
+
+*{
+	box-sizing: border-box;
+}
+
+body{
+	background-image: url("../images/portada.jpg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #3185eb;
+}
+
+body,html{
+	margin: 0;
+	overflow: hidden;
+}
+
+.title{
+	min-height: 50vh;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+}
+
+.title h1{
+	font-family: Arial, sans-serif;
+	font-size: 40px;
+	background-image: linear-gradient(to bottom, red, #4e0303);
+	border-radius: 20px;    
+    color: #fff;
+    mix-blend-mode: hard-light;
+    padding: 10px 10px;
+    text-align: center;
+}
+
+.buttons{
+	min-height: 50vh;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: flex-start;
+	-webkit-box-pack: center;
+	justify-content: center;
+}
+
+.play{
+	align-self: top;
+	width: 30vw;
+}
+
+.ranking{
+	align-self: center;
+	width: 30vw;
+}
+
+.credits{
+	align-self: baseline;
+	width: 30vw;
+}
+
+
+
+.buttons h2{
+	font-family: Arial, sans-serif;
+	font-size: 40px;
+	background-image: linear-gradient(to bottom, #ff6a00, #4e0303);
+	border-radius: 20px;
+    color: #fff;
+    mix-blend-mode: hard-light;
+    padding: 10px 10px;
+    text-align: center;
+}
+
+@media screen and (min-width: 740px) {
+	.title h1{
+		font-family: Arial, sans-serif;
+		font-size: 65px;
+		background-image: linear-gradient(to bottom, red, #4e0303);
+		border-radius: 20px;    
+	    color: #fff;
+	    mix-blend-mode: hard-light;
+	    padding: 5px 20px 5px 15px;
+	    text-align: center;
+	}
+
+	.buttons > div{
+		margin: 0 -8rem;
+	}
+}
+
+
+
+/*PÁGINAS DEL JUEGO*/
 #contenedor_principal{
 			height: 100%;
 			width: 100%;
