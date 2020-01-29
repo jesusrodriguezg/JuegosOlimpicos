@@ -1,0 +1,42 @@
+#contenedor_principal{
+			height: 100%;
+			width: 100%;
+		}
+
+		img{
+			width: 100%;
+			height: 600px;
+			display: block;
+		}
+		#contenedor_texto{
+			position: relative;
+			background-color: gray;
+			height: 270px;
+			margin-top: -16px;
+		}
+		.texto_contenedor{
+			background-color: white;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+
+		.opcion1_1_jugador, .opcion2_2_jugador {
+			position: absolute;
+			background-color: red;
+			padding-left: 30px;
+			padding-right: 30px;
+			text-align: center;
+			opacity: 0.8;
+
+		}
+		.opcion1_1_jugador{
+			top: 30%;
+			left: 41%;
+			color: black;
+		}
+
+		.opcion2_2_jugador{
+			top: 20%;
+			left: 41%;
+			color: black;
+		}
