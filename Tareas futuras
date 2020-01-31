@@ -1,0 +1,3 @@
+- Incrementar la probabilidad de que te genere un evento al 80% (función numRandom()).
+- Para evitar que se repita un evento, podemos usar un array que incluya la posición del evento y que se compruebe antes de generarlo que no está ya en el array.
+- Terminar de desarrollar las funciones para automatizar el que se muestren los botones de nuevos destinos y elcambio de pantalla
