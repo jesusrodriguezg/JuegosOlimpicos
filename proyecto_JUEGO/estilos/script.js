@@ -111,11 +111,9 @@ $(document).ready(function () {
      let respuesta =  e.currentTarget.id;
      let acertada = $("#acertada").text();
      if (respuesta == acertada) {
-            //alert("Has acertado");
-            //mostrarBotones
-            cambioPantalla();
+            mostrarBotones();
         }else{
-            alert("Has fallado");
+            mostrarBotones();
         }
     }
 
@@ -123,11 +121,11 @@ $(document).ready(function () {
     *Debe llamarse ANTES de mostrar la pantalla
     */
     function mostrarBotones(){
-        var id=$("divfondo > img").css("display","block").attr("id");
-        var botones=$("divbotones > img");
+        var id=$("#divfondo > img").css("display","block").attr("id");
+        var botones=$("#divbotones > img");
         for (var i = 0; i < botones.length; i++) {
             if (botones[i].attr("id")==id) {
-                botones[i].css("display","block");
+                botones[i].attr({"style","display:inline-block"});
             }
         }
     }
