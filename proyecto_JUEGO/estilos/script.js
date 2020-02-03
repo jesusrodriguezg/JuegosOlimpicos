@@ -103,6 +103,10 @@ $(document).ready(function () {
         }
     }
 
+    /*
+    * Función que indica si se ha respondido correctamente o no; dependiendo de ello, se
+    * muestra un mensaje u otro; en ambos casos se llama a la función mostrarBotones()
+    */
     function eventoRespuesta(e) {
      let respuesta =  e.currentTarget.id;
      let acertada = $("#acertada").text();
@@ -119,7 +123,13 @@ $(document).ready(function () {
     *Debe llamarse ANTES de mostrar la pantalla
     */
     function mostrarBotones(){
-        //cambioPantalla();
+        var id=$("divfondo > img").css("display","block").attr("id");
+        var botones=$("divbotones > img");
+        for (var i = 0; i < botones.length; i++) {
+            if (botones[i].attr("id")==id) {
+                botones[i].css("display","block");
+            }
+        }
     }
 
     /*Función que cambia la pantalla cuando se muestran los botones para elegir nuevo destino
