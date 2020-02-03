@@ -1,3 +1,5 @@
+//Imágenes a 240 * 240
+
 $(document).ready(function () {
 
     /*
@@ -117,7 +119,7 @@ $(document).ready(function () {
     *Debe llamarse ANTES de mostrar la pantalla
     */
     function mostrarBotones(){
-
+        //cambioPantalla();
     }
 
     /*Función que cambia la pantalla cuando se muestran los botones para elegir nuevo destino
