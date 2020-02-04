@@ -1,0 +1,19 @@
+[{
+    "pregunta": "¿Cual es la ciudad olimpica de 2020?",
+    "respuestas": [
+        "Tokio",
+        "Toronto",
+        "Madrid"
+    ],
+    "acertada": "3"
+},
+{
+    "pregunta": "¿Cuantas medallas nos vamos a llevar?",
+    "respuestas": [
+        "0",
+        "1",
+        "Todas"
+    ],
+    "acertada": "3" 
+}
+]
