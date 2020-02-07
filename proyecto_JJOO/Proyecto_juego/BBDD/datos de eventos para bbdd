@@ -1,0 +1,16 @@
+
+-- Volcado de datos
+INSERT INTO evento_puzzle(ID, RUTA_PUZZLE)
+VALUES(1, '../puzzles/p1/p1.js');
+
+INSERT INTO evento_puzzle(ID, RUTA_PUZZLE)
+VALUES(2, '../puzzles/p2/p2.js');
+
+INSERT INTO evento_puzzle(ID, RUTA_PUZZLE)
+VALUES(3, '../puzzles/p3/p3.js');
+
+INSERT INTO evento_puzzle(ID, RUTA_PUZZLE)
+VALUES(4, '../puzzles/p4/p4.js');
+
+INSERT INTO evento_puzzle(ID, RUTA_PUZZLE)
+VALUES(5, '../puzzles/p5/p5.js');

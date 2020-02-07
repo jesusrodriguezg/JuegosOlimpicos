@@ -10,7 +10,6 @@
     $apuzzles = [];
     while ($registro = $result->fetchObject()) {
         $apuzzles[]=$registro->ID;
-        $apuzzles[]=$registro->NOMBRE_PUZZLE;
         $apuzzles[]=$registro->RUTA_PUZZLE;    
     }
     $conn=null;

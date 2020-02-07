@@ -144,10 +144,11 @@ $(document).ready(function () {
     }
 
     function mostrarPuzzle(apuzzles) {
-    	//var numero = Math.floor(Math.random() * 5);
+    	var numero = Math.floor(Math.random() * 5);
         $("#contenedor_puzzle").css("display", "block");
         //preguntar
-        $("#contenedor_puzzle script").css("src",""+apuzzles[][]);    
+        //falta
+        $("#contenedor_puzzle script").css("src",""+apuzzles[numero]);    
         //llamar a metodo "x", una vez completado el puzzle
         //cambioPantalla();
     }
