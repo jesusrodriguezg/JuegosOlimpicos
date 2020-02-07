@@ -38,7 +38,7 @@ create table JJOO.slide(
 )ENGINE = INNODB;
 
 
-create user usuario_juegos identified by 'usuario';
+create user usuario_juegos identified by 'Aabc123.';
 GRANT ALL PRIVILEGES ON JJOO.* TO usuario_juegos;
 
 
