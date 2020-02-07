@@ -11,7 +11,7 @@
 			COLS = 3,
 			tiles = [],
 			slots = [],
-			SPRITE_SHEET = "url('goku_v2_escalado.png')",
+			SPRITE_SHEET = "url('../../imagenes/eventos_puzzles/goku_v2_escalado.png')",
 			mouseX,
 			mouseY,
 			offsetX,
@@ -268,6 +268,6 @@
 		statusP.innerHTML = p + "% Complete";
 	}
 	image.onload = init;
-	image.src = "./goku_v2_escalado.png";
+	image.src = "../../imagenes/eventos_puzzles/goku_v2_escalado.png";
 	
 }(this, this.document))
