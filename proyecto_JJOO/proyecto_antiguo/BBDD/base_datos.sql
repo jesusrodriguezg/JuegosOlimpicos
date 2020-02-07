@@ -8,7 +8,6 @@ create table JJOO.eventos_pregunta(
 	RESPUESTA_ACERTADA VARCHAR(100)
 )ENGINE = INNODB;
 
-
 create table JJOO.puntuaciones(
 	ID INT(3) AUTO_INCREMENT PRIMARY KEY,
 	NOMBRE_USUARIO VARCHAR(50),
@@ -22,9 +21,20 @@ create table JJOO.eventos_imagen(
 	IMAGEN VARCHAR(100),
 	RESPUESTA_ACERTADA VARCHAR(50)
 )ENGINE = INNODB;
+
 create table JJOO.eventos_puzzle(
 	ID INT(3) PRIMARY KEY,
 	PUZZLE VARCHAR(100)
+)ENGINE = INNODB;
+
+create table JJOO.botones(
+	ID INT(3) PRIMARY KEY,
+	CONTENIDO VARCHAR(150)
+)ENGINE = INNODB;
+
+create table JJOO.slide(
+	id INT(3) PRIMARY KEY,
+	CONTENIDO VARCHAR(150)
 )ENGINE = INNODB;
 
 
