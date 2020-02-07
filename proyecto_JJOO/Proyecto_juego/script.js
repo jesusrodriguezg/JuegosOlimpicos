@@ -131,7 +131,7 @@ $(document).ready(function () {
 
     function eventoPuzzle(){
         //0-4
-        var numero = Math.floor(Math.random() * 5);
+        //var numero = Math.floor(Math.random() * 5);
         $.ajax({
             url: "php/metodo_puzzle.php",
             type: "POST",
