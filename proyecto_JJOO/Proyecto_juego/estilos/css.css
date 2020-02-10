@@ -7,14 +7,14 @@
   	}
   	.contenedor_opciones{
   		position: absolute;
-	    width:200px;
+	    width:150px;
 	    top:30%;
 	    left: 40%;
 	    text-align: center;
   	}
   	.contenedor_opciones .list-group{
   		padding-bottom: 30px;
-  		opacity: .8;
+  		/*opacity: .8;*/
   	}
 
   	.boton1:hover, .boton2:hover{
