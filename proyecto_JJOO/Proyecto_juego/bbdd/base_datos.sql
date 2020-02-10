@@ -3,8 +3,8 @@ use JJOO;
 
 create table JJOO.eventos_pregunta(
         ID INT(3) PRIMARY KEY,
-        PREGUNTA VARCHAR(50),
-        RESPUESTAS VARCHAR(300),
+        PREGUNTA VARCHAR(200),
+        RESPUESTAS VARCHAR(200),
         RESPUESTA_ACERTADA VARCHAR(100)
 )ENGINE = INNODB;
 
@@ -16,7 +16,7 @@ create table JJOO.puntuaciones(
 
 create table JJOO.eventos_imagen(
         ID INT(3) PRIMARY KEY,
-        PREGUNTA VARCHAR(50),
+        PREGUNTA VARCHAR(200),
         AYUDA VARCHAR(50),
         IMAGEN VARCHAR(100),
         RESPUESTA_ACERTADA VARCHAR(50)
