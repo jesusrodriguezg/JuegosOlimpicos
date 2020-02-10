@@ -10,22 +10,23 @@ $(document).ready(function () {
     * El script de PHP utiliza "alt" para hacer una select en la BD y devolver el CONTENIDO de la siguiente imagen
     * Con el contenido que devuelve  el script se crea el elemento con la siguiente imagen y todos sus atribtutos
     */
-    var botones=$(".contenedor_opciones > ul > li");
-    for (var i = 0; i < botones.length; i++) {
-        $(botones[i]).click(function(e){
+    $(".contenedor_opciones > ul > li").click(function(event){
             var alt=$(event.currentTarget).attr("alt");
             $.ajax({
-                url: "../php/slider.php",
+                url: "php/slider.php",
                 type: "POST",
                 data: {"alt":alt},
                 dataType: "text",
                 success: function (response) {
-                    //crear / sustituir 
-                    $("#carouselExampleControls").carousel(response);
+                    alert(response);
+                    //crear / slide / borrar
+                    //$("#carouselExampleControls").carousel(response);
+                    $(".active").append(response);
+                    $(".active:first").next().slide();
+                    $(".active:first").remove();
                 }
             });
         }); 
-    }
 
     //Eventos originales para cambiar de imagen pulsando en los botones
 
