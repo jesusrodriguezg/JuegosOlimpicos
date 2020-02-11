@@ -1,20 +1,18 @@
 $(document).ready(function () {
 
 	$(".boton1").click(function(){
-		var numero = $(this).attr("alt");
-		var split = $(this).attr("class").split(" ");
-		var clase = split[1];
-		alert(clase);
+		let numero = $(this).attr("alt");
+		let split = $(this).attr("class").split(" ");
+		let clase = split[1];
         $("#carouselExampleControls").carousel(parseInt(numero));
         numRandom();
         
     });
     
 	$(".boton2").click(function(){
-		var numero = $(this).attr("alt");
-		var split = $(this).attr("class").split(" ");
-		var clase = split[1];
-		alert(clase);
+		let numero = $(this).attr("alt");
+		let split = $(this).attr("class").split(" ");
+		let clase = split[1];
         $("#carouselExampleControls").carousel(parseInt(numero));
         numRandom();
 	});
@@ -26,11 +24,13 @@ $(document).ready(function () {
     //$(".boton1").click(numRandom);
 
     function numRandom() {
-        alert("entra");
-        var numero = Math.floor(Math.random() * 10);
-        if (numero%2==0) {
+        //alert("entra");
+        let numero = Math.floor(Math.random() * 2);
+        /*if (numero+1%2==0) {
             generaEvento();
-        }
+        }*/
+        generaEvento();
+
     }
 
     /*
@@ -39,13 +39,12 @@ $(document).ready(function () {
     */
 
     function generaEvento() { 
-        //var numero = Math.floor(Math.random() * 10);
-        let numero =1;
+        let numero = Math.floor(Math.random() * 2);
         switch (numero) {
-            case 1:
+            case 0:
             eventoPregunta();
             break;
-            case 2:
+            case 1:
             eventoImagen();
             break;
 
@@ -60,49 +59,53 @@ $(document).ready(function () {
     */
 
     function eventoPregunta() {   
-        alert("evento");   
-        var numero = Math.floor(Math.random() * 3);
+        let numero = Math.floor(Math.random() * (6 - 1)) + 1;
+        alert(numero);
         $.ajax({
-            url: "../../proyecto_antiguo/php/metodos.php",
-            type: "POST",
-            data: {numero:numero+1,funcion: "funcion1"},
-            dataType: "JSON",
+            type: "post",
+            url: "php/metodos.php",
+            data: {numero:numero, funcion: "funcion1"},
+            //dataType: "JSON",
+            error(xhr,status,error){console.log("nope");
+            },
             success: function (jsonStr) {
-                muestrame(jsonStr);
-                console.log(jsonStr);
+                let json = JSON.parse(jsonStr);
+                muestrame(json);
             }
         });               
     }
 
     function muestrame(pregunta) {   
-       // $(".panel").css("display", "block");
-
-        $(".panel").text(pregunta[0]);    
+       // $(".fixed-bottom:first-child").css("display", "block");
         let index = 1;
-        let lista=$("ul");
+        let lista=$("<ul>");
         lista.attr("class", "list-group");
+        lista.attr("id", "evt-pregunta");
         let cuestion =$("<li>").text(pregunta[0]); 
         cuestion.attr("class", "list-group-item");
         lista.append(cuestion); 
-        
+        //console.log(cuestion);
         pregunta[1].split(",").forEach(element => {
-            var elemento =$("<li>").text(element); 
+            let elemento =$("<li>").text(element); 
             elemento.attr("id", index);
             elemento.attr("class", "respuesta list-group-item");
             lista.append(elemento); 
+            //console.log(elemento);
+
             index ++;            
         });
+        $(".fixed-bottom").append(lista); 
 
-        var respuesta =$("<p>").text(pregunta[2]); 
+        let respuesta =$("<p>").text(pregunta[2]); 
         respuesta.attr("id", "acertada");
         respuesta.css("display", "none");  
-        $(".panel").append(respuesta); 
+        $(".fixed-bottom").append(respuesta); 
         escuchaRespuesta();
     }
 
     function escuchaRespuesta() {
         
-        var respuestas = document.getElementsByClassName("respuesta");
+        let respuestas = document.getElementsByClassName("respuesta");
         for (let i = 0; i < respuestas.length; i++) {
             respuestas[i].addEventListener("click", eventoRespuesta, false);
         }
@@ -112,12 +115,15 @@ $(document).ready(function () {
      let respuesta = $(e.currentTarget).text();
      let acertada = $("#acertada").text();
      if (respuesta == acertada) {
+        $("#evt-pregunta").remove();
             alert("Has acertado");
             //mostrarBotones
             //cambioPantalla();
-        }else{
-            alert("Has fallado");
-        }
+    }else{
+        $("#evt-pregunta").remove();
+        alert("Has fallado");
+    }
+    $("#acertada").remove();
     }
 
     /*Función que muestra los botones una vez que se ha completado el evento (respondido a la pregunta, etc.)
@@ -143,36 +149,71 @@ $(document).ready(function () {
 
 
      function eventoImagen(){
-        var numero = Math.floor(Math.random() * 3);
+        let numero = Math.floor(Math.random() * 5);
+        console.log("random imagen: "+numero);
         $.ajax({
             url: "php/metodos.php",
             type: "POST",
-            data: {numero:numero+1,funcion: "funcion2"},
-            dataType: "JSON",
+            data: {numero:numero,funcion: "funcion2"},
+            //dataType: "JSON",
             success: function (jsonStr) {
-                muestrameiMAGEN(jsonStr);
+                let json = JSON.parse(jsonStr);
+                muestrameiMAGEN(json);
             }
         });     
      }
-     function muestrameiMAGEN(imagen) {   
-        $("#contenedor_texto").css("display", "block");
-
-        $(".texto_contenedor").text(imagen[0]);    
-        let img=$("img");
-        img.attr("src", "../"+imagen[2]);
-        let entrada=$("input");
-        entrada.attr("type","text");
-        entrada.attr("id","respuesta");
-        entrada.text(imagen[1]);
-        let boton=$("button");
-        boton.attr("id","responde");
-
-        
-        var respuesta =$("<p>").text(pregunta[2]); 
-
+     function muestrameiMAGEN(imagen) {  
+        //console.log(imagen);
+        let lista=$("<ul>");
+        lista.attr("class", "list-group");
+        lista.attr("id", "evt-imagen");
+        let cuestion =$("<li>").text(imagen[0]); 
+        cuestion.attr("class", "list-group-item");
+        lista.append(cuestion);         
+        let elemento =$("<li>"); 
+        elemento.attr("class", "list-group-item");
+        let entrada = $("<input>");
+        entrada.attr("id", "respuesta");
+        entrada.attr("placeholder", imagen[1]);
+        elemento.append(entrada);
+        let boton = $("<button>").text("Responder");
+        boton.attr("id","responderImagen");
+        elemento.append(boton);
+        lista.append(elemento); 
+        $(".fixed-bottom").append(lista); 
+        let respuesta =$("<p>").text(imagen[3]); 
         respuesta.attr("id", "acertada");
         respuesta.css("display", "none");  
-        $("#respuestas").append(respuesta); 
-        escuchaRespuesta();
+        $(".fixed-bottom").append(respuesta); 
+        $(".contenedor_opciones .list-group").css("display", "none");
+
+        let cara = $("<img>").attr("src",imagen[2]);
+        cara.attr("id","imgPregunta");
+        $(".contenedor_opciones").append(cara);
+        $(".contenedor_opciones").css("left","20%");
+        $(".contenedor_opciones").css("top","5%");
+        escuchaImagen();
+    }
+
+    function escuchaImagen() {
+        let acertada = $("#acertada").text();    
+        acertada= acertada.toUpperCase();
+        $("#responderImagen").click( function (){
+            let respuesta = $("#respuesta").val();
+            respuesta =respuesta.toUpperCase();
+            if (acertada==respuesta) {
+                $("#evt-imagen").remove();
+                alert("Has acertado");
+            }else{
+                $("#evt-imagen").remove();
+                alert("Has fallado");
+            }
+            $("#imgPregunta").remove();
+            $("#acertada").remove();
+            $(".contenedor_opciones .list-group").css("display", "block");
+            $(".contenedor_opciones").removeAttr("style");
+            
+
+        });        
     }
 })
