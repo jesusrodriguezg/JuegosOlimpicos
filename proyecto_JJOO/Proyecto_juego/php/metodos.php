@@ -2,6 +2,8 @@
     require_once 'conexion.php';
 
 
+
+
     if(isset($_POST['funcion']) && !empty($_POST['funcion'])) {
         $funcion = $_POST['funcion'];    
         $numero= $_POST["numero"];
@@ -33,6 +35,10 @@
         $conn=null;
         echo json_encode($pregunta);
     }
+
+
+
+
     function Imagen($numero){
         $conn = new Conexion(); 
         $sql = "SELECT * FROM `eventos_imagen` WHERE ID=\"".$numero."\"";
