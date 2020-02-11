@@ -16,14 +16,12 @@ $(document).ready(function () {
                 url: "php/slider.php",
                 type: "POST",
                 data: {"alt":alt},
-                dataType: "text",
                 success: function (response) {
-                    alert(response);
-                    //crear / slide / borrar
-                    //$("#carouselExampleControls").carousel(response);
+                    $(".fixed-bottom").fadeOut();
                     $(".active").append(response);
-                    $(".active:first").next().slide();
-                    $(".active:first").remove();
+                    $(".active > img:first").fadeOut(1000,function(){
+                        $(".active > img:first").remove();
+                    });                    
                 }
             });
         }); 
