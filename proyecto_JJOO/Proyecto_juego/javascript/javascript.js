@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
 	$(".boton1").click(function(){
@@ -16,6 +17,52 @@ $(document).ready(function () {
         $("#carouselExampleControls").carousel(parseInt(numero));
         numRandom();
 	});
+//Imágenes a 240 * 240
+
+$(document).ready(function () {
+
+
+    /*
+    * Se genera un evento de click por cada botón que se muestre
+    * Se extrae el atributo "alt" de la imagen
+    * Cuando se pulsa en el botón, se llama a slider.php y se le manda "alt" como parámetro
+    * El script de PHP utiliza "alt" para hacer una select en la BD y devolver el CONTENIDO de la siguiente imagen
+    * Con el contenido que devuelve  el script se crea el elemento con la siguiente imagen y todos sus atribtutos
+    */
+    var botones=$(".contenedor_opciones > ul > li");
+    for (var i = 0; i < botones.length; i++) {
+        $(botones[i]).click(function(e){
+            var alt=$(event.currentTarget).attr("alt");
+            $.ajax({
+                url: "../php/slider.php",
+                type: "POST",
+                data: {"alt":alt},
+                dataType: "text",
+                success: function (response) {
+                    //crear / sustituir 
+                    $("#carouselExampleControls").carousel(response);
+                }
+            });
+        }); 
+    }
+
+    //Eventos originales para cambiar de imagen pulsando en los botones
+
+    /*$(".boton1").click(function(){
+        var numero = $(this).attr("alt");
+        var split = $(this).attr("class").split(" ");
+        var clase = split[1];
+        alert(clase);
+        $("#carouselExampleControls").carousel(parseInt(numero));
+    });
+    $(".boton2").click(function(){
+        var numero = $(this).attr("alt");
+        var split = $(this).attr("class").split(" ");
+        var clase = split[1];
+        alert(clase);
+        $("#carouselExampleControls").carousel(parseInt(numero));
+    });*/
+
 
     /*
     Eleccion random para decidir si hay evento a la entrada de una pantalla o no
@@ -31,12 +78,25 @@ $(document).ready(function () {
         }*/
         generaEvento();
 
+    $(".opcion2_2_jugador").click(numRandom);
+    $(".opcion1_1_jugador").click(numRandom);
+
+    function numRandom() {
+        $("#contenedor_texto").css("display", "none");
+        $(".texto_contenedor").text("");
+        $("#respuestas").text("");
+
+        var numero = Math.floor(Math.random() * 10);
+        if (numero%2==0) {
+            generaEvento();
+        }
     }
 
     /*
     Si ha salido que se genera evento elegimos QUE evento se genera de forma aleatoria
     de un numero predefinido
     */
+
 
     function generaEvento() { 
         let numero = Math.floor(Math.random() * 2);
@@ -47,7 +107,6 @@ $(document).ready(function () {
             case 1:
             eventoImagen();
             break;
-
             default:
             break;
         }    
@@ -57,6 +116,7 @@ $(document).ready(function () {
     En este caso es el evento de la pregunta recogemos las preguntas de un JSON y mediante
     un random (de nuevo) elegimos cual mostrar.
     */
+
 
     function eventoPregunta() {   
         let numero = Math.floor(Math.random() * (6 - 1)) + 1;
@@ -105,6 +165,7 @@ $(document).ready(function () {
 
     function escuchaRespuesta() {
         
+
         let respuestas = document.getElementsByClassName("respuesta");
         for (let i = 0; i < respuestas.length; i++) {
             respuestas[i].addEventListener("click", eventoRespuesta, false);
@@ -115,6 +176,7 @@ $(document).ready(function () {
      let respuesta = $(e.currentTarget).text();
      let acertada = $("#acertada").text();
      if (respuesta == acertada) {
+
         $("#evt-pregunta").remove();
             alert("Has acertado");
             //mostrarBotones
@@ -143,6 +205,7 @@ $(document).ready(function () {
                 $(".texto_contenedor").text("VAYA QUE SITIO ES ESTE");
             });
      }
+
 
 
 
