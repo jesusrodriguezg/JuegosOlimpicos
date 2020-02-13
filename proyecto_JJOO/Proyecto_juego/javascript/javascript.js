@@ -1,35 +1,66 @@
 $(document).ready(function () {
     
-   /* let data = sessionStorage.getItem('inicioJuego');
-    if ( data!=null ) {
-        field.value = sessionStorage.getItem("inicioJuego");    
-    }else{
-        sessionStorage.setItem('inicioJuego', Date.now());
-        sessionStorage.setItem('aciertosJuego', 0);        
-    }    */
+    /*
+    * Se genera un evento de click por cada botón que se muestre
+    * Se extrae el atributo "alt" de la imagen
+    * Cuando se pulsa en el botón, se llama a slider.php y se le manda "alt" como parámetro
+    * El script de PHP utiliza "alt" para hacer una select en la BD y devolver el CONTENIDO de la siguiente imagen
+    * Con el contenido que devuelve  el script se crea el elemento con la siguiente imagen y todos sus atribtutos
+    * Se hace fadeOut del contenedor de respuestas, de los botones y de la imagen antigua y aparece la nueva
+    */
 
-	$(".boton1").click(function(){
-		let numero = $(this).attr("alt");
-		let split = $(this).attr("class").split(" ");
-		let clase = split[1];
-        $("#carouselExampleControls").carousel(parseInt(numero));
-        numRandom();
+    cambiarImagen();
+
+    function cambiarImagen(){
+        $(".contenedor_opciones > ul > li").click(function(event){
+            var alt=$(event.currentTarget).attr("alt");
+            $.ajax({
+                url: "php/slider.php",
+                type: "POST",
+                data: {"alt":alt},
+                success: function (response) {
+                    $(".fixed-bottom").fadeOut();
+                    $(".contenedor_opciones").fadeOut();
+                    $(".active").append(response);
+                    $(".active > img:first").fadeOut(1000,function(){
+                        $(".active > img:first").remove();
+                        numRandom();
+
+                    });
+                }
+            });
+        });
         
-    });
-    
-	$(".boton2").click(function(){
-		let numero = $(this).attr("alt");
-		let split = $(this).attr("class").split(" ");
-		let clase = split[1];
-        $("#carouselExampleControls").carousel(parseInt(numero));
-        numRandom();
-	});
+    }
 
     /*
-    Eleccion random para decidir si hay evento a la entrada de una pantalla o no
+    * Función que muestra los botones cuando se completa un evento
+    * Cogemos el atributo "id" de la imagen activa y lo pasamos por parámetros al archivo botones.php
+    * El script de PHP nos devuelve el CONTENIDO de tantos botones como correspondan a esa imagen
+    * Creamos un elemento <ul> con su correspondiente <li> por cada botón
+    * Mostramos el contenedor de los botones con un fadeIn
+    * Llamamos a cambiarImagen() para que le asigne eventos a los botones
     */
-    //$(".boton2").click(numRandom);
-    //$(".boton1").click(numRandom);
+
+    function mostrarBotones(){
+        var id=$(".active").attr("id");
+        $.ajax({
+            url: "php/botones.php",
+            type: "POST",
+            data: {"id":id},
+            success: function (response) {
+                $("contenedor_opciones > ul").remove(); 
+                var jsonBotones=JSON.parse(response);
+                for (var i = 0; i < response.length; i++) {
+                    $("contenedor_opciones").append("ul").append(response[i]);
+                }
+                $(".contenedor_opciones").fadeOut(1000,function(){
+                    $(".contenedor_opciones").fadeIn();
+                });
+            }
+        });
+        cambiarImagen();
+    }
 
     function numRandom() {
         //alert("entra");
