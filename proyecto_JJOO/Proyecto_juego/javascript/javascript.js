@@ -17,7 +17,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "php/slider.php",
                 type: "POST",
-                data: {"alt":alt},
+                data: {"alt":alt,funcion:"funcion3"},
                 success: function (response) {
                     $(".fixed-bottom").fadeOut();
                     $(".contenedor_opciones").fadeOut();
