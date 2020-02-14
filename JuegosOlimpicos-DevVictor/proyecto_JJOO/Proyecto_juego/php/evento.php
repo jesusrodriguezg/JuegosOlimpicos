@@ -22,18 +22,18 @@ class Evento {
     }
 
     public function obtenerImagenes($numero){
-        $sql = "SELECT * FROM 'eventos_imagen' WHERE 'ID'=\"".$numero."\"";
+        $sql = "SELECT * FROM eventos_imagen WHERE ID= $numero";
         $conn = new Conexion(); 
         $result = $conn->prepare($sql);
         $result->execute();
         $imagen = [];
-        while ($registro = $result->fetchObject()) {
-            $pregunta[]=$registro->PREGUNTA;
-            $pregunta[]=$registro->AYUDA;
-            $pregunta[]=$registro->IMAGEN;
-            $pregunta[]=$registro->RESPUESTA_ACERTADA;    
+        while ($registro = $result->fetch(PDO::FETCH_ASSOC)) {
+            array_push($imagen, $registro["PREGUNTA"]);
+            array_push($imagen, $registro["AYUDA"]);
+            array_push($imagen, $registro["IMAGEN"]);
+            array_push($imagen, $registro["RESPUESTA_ACERTADA"]);
         }
-        return $pregunta;
+        return $imagen;
     }
 
     function Ejecutar($sql){
