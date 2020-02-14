@@ -8,14 +8,15 @@
 </head>
 <body>
     <?php
-    function muestra ($numero){
+    /*function muestra ($numero){
         require_once 'conexion.php';
 
         $conn = new Conexion(); 
         $numero= $numero;
-        $sql = "SELECT * FROM `eventos_pregunta`";
         $result = $conn->prepare($sql); 
         $result->execute();
+        $sql = "SELECT * FROM `eventos_pregunta`";
+        $registro = Conexion::Ejecutar($sql);
         $pregunta = [];
         while ($registro = $result->fetchObject()) {
             $pregunta[]=$registro->PREGUNTA;
@@ -24,9 +25,24 @@
         }
         $conn=null;
         var_dump(json_encode($pregunta));
-    }
+    }*/
 
-    muestra(3);
+    
+    //include 'usuario.php';
+       // $usuario = new Usuario("benganito", "100");
+        //var_dump($usuario);
+        ///echo $usuario->Mostrar_nombre();
+        //$usuario->insertarPuntuacion(); 
+       // $result = Usuario::obtenerPuntuacion();
+       //var_dump($result);
+        
+        //var_dump($listado);
+
+
+        require_once 'evento.php';
+        $pregunta = Evento::obtenerPreguntas(3);
+        var_dump($pregunta);
+
 
     ?>
 </body>

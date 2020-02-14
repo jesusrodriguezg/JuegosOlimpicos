@@ -39,7 +39,9 @@ $(document).ready(function () {
                 data: {nombre: nombreUsuario, puntos: puntosTotales, funcion: "puntuaciones"},
                 //dataType: "JSON",
                 success: function (jsonStr) {
+                    console.log(jsonStr);
                     let json = JSON.parse(jsonStr);  
+                    console.log(json);
                     puntos.empty();
                     puntos.append("<h2>La Tabla de Puntuaciones es: </h2>");
                     for (let index = 0; index < json.length; index++) {
