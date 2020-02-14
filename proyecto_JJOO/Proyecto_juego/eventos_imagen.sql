@@ -1,0 +1,5 @@
+INSERT INTO eventos_imagen (ID,PREGUNTA,AYUDA,IMAGEN,RESPUESTA_ACERTADA) VALUES (1,'¿Quién es este personaje, elegido como el embajador de los JJOO de Tokio?','****','../imagenes/eventos_imagen/goku.jpg','Goku');
+INSERT INTO eventos_imagen (ID,PREGUNTA,AYUDA,IMAGEN,RESPUESTA_ACERTADA) VALUES (2,'¿Cuál es el nombre de este tenista?','**** *****','../imagenes/eventos_imagen/nadal.jpg','Rafa Nadal');
+INSERT INTO eventos_imagen (ID,PREGUNTA,AYUDA,IMAGEN,RESPUESTA_ACERTADA) VALUES (3,'¿Cuál es el nombre de esta disciplina olímpica?','*******','../imagenes/eventos_imagen/curling.jpg','Curling');
+INSERT INTO eventos_imagen (ID,PREGUNTA,AYUDA,IMAGEN,RESPUESTA_ACERTADA) VALUES (4,'¿Cuál es el nombre de este nadador?','******* Phelps','../imagenes/eventos_imagen/phelps.jpg','Michael');
+INSERT INTO eventos_imagen (ID,PREGUNTA,AYUDA,IMAGEN,RESPUESTA_ACERTADA) VALUES (5,'¿Qué objeto es el que portan los atletas hasta el estadio olímpico?','********','../imagenes/eventos_imagen/antorcha.jpg','Antorcha');
