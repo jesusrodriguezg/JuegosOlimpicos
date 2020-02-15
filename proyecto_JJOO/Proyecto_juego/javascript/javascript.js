@@ -9,62 +9,49 @@ $(document).ready(function () {
     * Se hace fadeOut del contenedor de respuestas, de los botones y de la imagen antigua y aparece la nueva
     */
 
+
+
+    //Para que funciones he hecho cambiado el sitio de la carpeta php, dentro de evento.php cambiar registro[0] a registro["PREGUNTA"] y 
+    //ademas cambiar el nombre de la base de datos y password
+
+
     cambiarImagen();
 
     function cambiarImagen(){
-        $(".contenedor_opciones > ul > li").click(function(event){
+        $(".boton1").click(function(event){
             var alt=$(event.currentTarget).attr("alt");
-            $.ajax({
-                url: "php/metodos.php",
-                type: "POST",
-                data: {"alt":alt,funcion:"funcion3"},
-                success: function (response) {
-                    $(".fixed-bottom").fadeOut();
-                    $(".contenedor_opciones").fadeOut();
-                    $(".active").append(response);
-                    $(".active > img:first").fadeOut(1000,function(){
-                        $(".active > img:first").remove();
-                        //numRandom();
+            $("#carouselExampleControls").carousel(parseInt(alt));
 
-                    });
-                }
-            });
-            mostrarBotones();
-        });
-        
-    }
-
-    /*
-    * Función que muestra los botones cuando se completa un evento
-    * Cogemos el atributo "id" de la imagen activa y lo pasamos por parámetros al archivo botones.php
-    * El script de PHP nos devuelve el CONTENIDO de tantos botones como correspondan a esa imagen
-    * Creamos un elemento <ul> con su correspondiente <li> por cada botón
-    * Mostramos el contenedor de los botones con un fadeIn
-    * Llamamos a cambiarImagen() para que le asigne eventos a los botones
-    */
-
-    function mostrarBotones(){
-        var id=$(".active").attr("id");
-        $.ajax({
-            url: "php/metodos.php",
-            type: "POST",
-            data: {id:"id",funciones:"funcion4"},
-            success: function (response) {
-                $("contenedor_opciones > ul").remove(); 
-                var jsonBotones=JSON.parse(response);
-                for (var i = 0; i < response.length; i++) {
-                    $("contenedor_opciones").append("ul").addClass("list-group").append(response[i]);
-                }
-                $(".contenedor_opciones").fadeOut(1000,function(){
-                    $(".contenedor_opciones").fadeIn();
-                });
+            if( parseInt(alt) +2 > $('#carouselExampleControls').length){
+                $(event.currentTarget).attr("alt",parseInt(alt)+1);
+                $(".boton2").attr("alt",parseInt(alt)+1);
             }
+            else{
+                $(event.currentTarget).attr("alt",parseInt(alt)+2);
+                $(".boton2").attr("alt",parseInt(alt)+2);
+            }
+            numRandom();
         });
-        cambiarImagen();
+
+         $(".boton2").click(function(event){
+            var alt=$(event.currentTarget).attr("alt");
+            $("#carouselExampleControls").carousel(parseInt(alt));
+
+            if( parseInt(alt) + 1 > $('#carouselExampleControls').length){
+                $(event.currentTarget).attr("alt",parseInt(alt)+1);
+                $(".boton1").attr("alt",parseInt(alt)+1);
+            }
+            else{
+                $(event.currentTarget).attr("alt",parseInt(alt)+1);
+                $(".boton1").attr("alt",parseInt(alt)+1);
+            }
+            numRandom();     
+        });
     }
+
+
 
     function numRandom() {
-        //alert("entra");
         let numero = Math.floor(Math.random() * 2);
         /*if (numero+1%2==0) {
             generaEvento();
@@ -78,7 +65,8 @@ $(document).ready(function () {
     */
 
     function generaEvento() { 
-        let numero = Math.floor(Math.random() * 2);
+        //let numero = Math.floor(Math.random() * 2);
+        let numero = 1;
         switch (numero) {
             case 0:
             eventoPregunta();
@@ -95,26 +83,33 @@ $(document).ready(function () {
     En este caso es el evento de la pregunta recogemos las preguntas de un JSON y mediante
     un random (de nuevo) elegimos cual mostrar.
     */
+    var preguntaMostrada=new Array();
 
-    function eventoPregunta() {   
+    function eventoPregunta() {
         let numero = Math.floor(Math.random() * (6 - 1)) + 1;
-        alert(numero);
+        while(preguntaMostrada.includes(numero)){
+            let numero = Math.floor(Math.random() * (6 - 1)) + 1;
+        }
+        preguntaMostrada[preguntaMostrada.length]=numero;
         $.ajax({
             type: "post",
             url: "php/metodos.php",
-            data: {numero:numero, funcion: "funcion1"},
+            data: {numero: numero, funcion: "funcion1"},
             //dataType: "JSON",
-            error(xhr,status,error){console.log("nope");
+            fail(xhr,status,error){console.log(xhr+" "+" "+status+" "+error);
             },
-            success: function (jsonStr) {
+            success: function (jsonStr){
+                
                 let json = JSON.parse(jsonStr);
                 muestrame(json);
+                
             }
         });               
     }
 
     function muestrame(pregunta) {   
-       // $(".fixed-bottom:first-child").css("display", "block");
+        
+        //$(".fixed-bottom:first-child").css("display", "block");
         let index = 1;
         let lista=$("<ul>");
         lista.attr("class", "list-group");
@@ -164,37 +159,25 @@ $(document).ready(function () {
     $("#acertada").remove();
     }
 
-    /*Función que muestra los botones una vez que se ha completado el evento (respondido a la pregunta, etc.)
-    *Debe llamarse ANTES de mostrar la pantalla
-    */
-    function mostrarBotones(){
-        //cambioPantalla();
-    }
-
-    /*Función que cambia la pantalla cuando se muestran los botones para elegir nuevo destino
-    *Se le llama después de que el usuario haya pulsado uno de los botones mostrados con mostrarBotones()
-    *Recibe por argumentos un ID del botón que hemos pulsado, que nos sirve para saber qué imagen debemos mostrar a continuación
-    */
-    function cambioPantalla(id){
-            $("#imagen_fondo1").fadeOut(200, function(){
-                $("#imagen_fondo2").show();
-                $(".texto_contenedor").text("VAYA QUE SITIO ES ESTE");
-            });
-     }
-
-     function eventoImagen(){
+    var imagenMostrada=new Array();
+    
+    function eventoImagen(){
         let numero = Math.floor(Math.random() * 5);
+        while(imagenMostrada.includes(numero)){
+            numero = Math.floor(Math.random() * 5);
+        }
+        imagenMostrada[imagenMostrada.length]=numero;
         console.log("random imagen: "+numero);
         $.ajax({
+            type: "post",
             url: "php/metodos.php",
-            type: "POST",
             data: {numero:numero,funcion: "funcion2"},
             //dataType: "JSON",
             success: function (jsonStr) {
                 let json = JSON.parse(jsonStr);
                 muestrameiMAGEN(json);
             }
-        });     
+        });         
      }
      function muestrameiMAGEN(imagen) {  
         //console.log(imagen);
