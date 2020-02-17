@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">   
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="vista/javascript/javascript.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Juegos Olímpicos</title>
+    <link rel="stylesheet" type="text/css" href="vista/estilos/css.css">        
+  </head>
+<body>
+	<div class="container-fluid first ">
+		<div class="row no-gutters">
+			<div class="col-12">
+				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		        	<div class="carousel-inner" role="listbox">
+	        			<div class="carousel-item item active" style="background-image:url(vista/imagenes/portada.jpg); " alt="primer slide">
+          				</div>		
+      				</div>
+      			</div>
+      		</div>
+    	</div>
+    </div>
+    <div class="ontop container">
+    	<div class="row">
+      		<div class="col-12">
+	      		<h2 class="col_h2"> Bienvenido a los JJOO </h2>
+	      			<div class="buttons">
+						<div class="play"><h2>Jugar</h2></div>
+						<div class="ranking"><h2>Marcador</h2></div>
+						<div class="credits"><h2>Créditos</h2></div>
+					</div>	
+      		</div>
+      	</div>
+    </div>	
+</body>
+<script type="text/javascript">
+	$(".play").click(function(){
+		sessionStorage.removeItem('inicioJuego');
+		sessionStorage.removeItem('aciertosJuego');
+  		$(location).attr('href', 'vista/juego.html');
+	});
+	$(".credits").click(function(){
+  		$(location).attr('href', 'vista/creditos.html');
+	});
+	$(".ranking").click(function(){
+  		$(location).attr('href', 'vista/marcador.html');
+	});
+</script>
+</html>

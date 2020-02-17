@@ -1,0 +1,157 @@
+/* INICIO PORTADA*/
+
+.first {
+    background-color: #ddd;
+    padding-right: 0;
+    padding-left:0;
+    
+}
+.ontop {
+    height: 100px;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+}
+
+.ontop2{
+    height: 50px;
+    width: auto;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.ontop3{
+    height: 50px;
+    width: auto;
+    position: absolute;
+    top: 300px;
+    right: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.ontop2 .row .col-12{
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* background-image:url(../imagenes/evento_imagenes/evento_imagen-1.jpg); */
+    z-index: 0;
+}
+.contenedor_opciones{
+    z-index: 1;
+}
+
+.col_h2{
+  font-family: Arial, sans-serif;
+  font-size: 40px;
+  background-image: linear-gradient(to bottom, red, #4e0303);
+  border-radius: 20px;    
+  color: #fff;
+  mix-blend-mode: hard-light;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.buttons{
+  min-height: 50vh;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+.buttons h2{
+  font-family: Arial, sans-serif;
+  font-size: 40px;
+  background-image: linear-gradient(to bottom, #ff6a00, #4e0303);
+  border-radius: 20px;
+  color: #fff;
+  mix-blend-mode: hard-light;
+  padding: 10px 10px;
+  text-align: center;
+}
+.play{
+  align-self: top;
+  width: 30vw;
+}
+
+.ranking{
+  align-self: center;
+  width: 30vw;
+}
+
+.credits{
+  align-self: baseline;
+  width: 30vw;
+}
+
+/* FIN PORTADA */
+
+.fixed-bottom{
+    	background-color: rgba(245, 245, 245, 1);
+  		opacity: .8;
+  	}
+  	.list-group{
+  		opacity: none;
+  	}
+  	.contenedor_opciones{
+  		position: absolute;
+	    width:200px;
+	    top:30%;
+	    left: 40%;
+	    text-align: center;
+  	}
+  	.contenedor_opciones .list-group{
+  		padding-bottom: 30px;
+  		opacity: .8;
+  	}
+
+  	.boton1:hover, .boton2:hover{
+  		background-color: red;
+  	}
+
+  	a, a:hover{
+  		color: black;
+  		text-decoration: none;
+  	}
+
+    .carousel,
+.carousel-inner {
+  height: 100vh;
+}
+
+.item {
+  border: 1px solid grey;
+  max-height: 100vh;
+  min-height: 100vh;
+  max-width: 100vw;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.finaliza{
+  height: 300px;
+  overflow: scroll;
+  color: black;
+  text-align: left;
+  word-spacing: 5px;
+}
+
+.botonFin{
+  display: none;
+}
