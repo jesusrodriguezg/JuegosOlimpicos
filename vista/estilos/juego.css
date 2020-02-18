@@ -1,0 +1,28 @@
+body{
+	background-color: black;
+	color: white;
+	font-size: 40px;
+}
+section{
+	z-index: -1;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+#foto{
+	position: absolute;
+	top: 50%;
+	left: 25%;
+	z-index: 0;
+	width: 3%;
+	height: 5%;
+	z-index: 1;
+}
+.contenedor{
+	position: relative;
+}
+#number {
+  font-size:40px;
+  color: white;
+}
+
+
