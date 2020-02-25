@@ -80,7 +80,7 @@ INSERT INTO `eventos_pregunta` (`ID`, `PREGUNTA`, `RESPUESTAS`, `RESPUESTA_ACERT
 (4, '¿Qué nueva disciplina olímpica se ha introducido este año?', 'Skateboarding,Petanca,Pesca de trucha', 'Skateboarding'),
 (5, '¿Quién tiene el record del mundo de 100 metros lisos?', 'Usain Bolt,Carl Lewis,Speedy González', 'Usain Bolt'),
 (6, '¿En qué país se crearon los JJOO?', 'Grecia,EEUU,España', 'Grecia'),
-(7, '¿Cuál de estos deportes NO es disciplina olímpica?', 'Patinaje,Surf,Karate', 'Patinaje'),
+(7, '¿Cuál de estos deportes NO es disciplina olímpica?', 'Patinaje,Surf,Karate', 'Karate'),
 (8, '¿Qué deportista tiene el récord de medallas olímpicas?', 'Usain Bolt,Ian Millar,Michael Phelps', 'Michael Phelps'),
 (9, '¿Cuántos países participan en los juegos de Tokyo 2020?', '163 países,218 países,204 países', '204 países'),
 (10, 'La televisión es un medio imprescindible para seguir los Juegos Olímpicos ¿En qué año se televisaron por primera vez?', 'Helsinki 1952,Los Ángeles 1920,Berlín 1936', 'Berlín 1936'),
